@@ -11,16 +11,18 @@ const Nav = () => {
       [
         {
           opacity: 1,
+          scale: 1,
           transform: "translateY(0)",
         },
         {
-          opacity: 0.2,
-          transform: "translateY(-35%)",
+          opacity: 0.5,
+          scale: 0.9,
+          transform: "translateY(-100px)",
         },
       ],
       {
-        duration: 1500,
-        easing: "cubic-bezier(0.87, 0, 0.13, 1)",
+        duration: 1000,
+        easing: "cubic-bezier(0.76, 0, 0.24, 1)",
         fill: "forwards",
         pseudoElement: "::view-transition-old(root)",
       }
@@ -29,50 +31,50 @@ const Nav = () => {
     document.documentElement.animate(
       [
         {
-          clipPath: "polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%)",
+          transform: "translateY(100%)",
         },
         {
-          clipPath: "polygon(0% 100%, 100% 100%, 100% 0%, 0% 0%)",
+          transform: "translateY(0)",
         },
       ],
       {
-        duration: 1500,
-        easing: "cubic-bezier(0.87, 0, 0.13, 1)",
+        duration: 1000,
+        easing: "cubic-bezier(0.76, 0, 0.24, 1)",
         fill: "forwards",
         pseudoElement: "::view-transition-new(root)",
       }
     );
   };
 
+  const routes = [
+    {
+      label: "Home",
+      url: "/",
+    },
+    {
+      label: "About",
+      url: "/about",
+    },
+  ];
+
   return (
     <nav className="p-6">
       <ul className="flex gap-4">
-        <li>
-          <Link
-            href="/"
-            onClick={(e) => {
-              e.preventDefault();
-              router.push("/", {
-                onTransitionReady: slideInOut,
-              });
-            }}
-          >
-            Home
-          </Link>
-        </li>
-        <li>
-          <Link
-            href="/about"
-            onClick={(e) => {
-              e.preventDefault();
-              router.push("/about", {
-                onTransitionReady: slideInOut,
-              });
-            }}
-          >
-            About
-          </Link>
-        </li>
+        {routes.map((route) => (
+          <li key={route.label}>
+            <Link
+              href={route.url}
+              onClick={(e) => {
+                e.preventDefault();
+                router.push(route.url, {
+                  onTransitionReady: slideInOut,
+                });
+              }}
+            >
+              {route.label}
+            </Link>
+          </li>
+        ))}
       </ul>
     </nav>
   );
