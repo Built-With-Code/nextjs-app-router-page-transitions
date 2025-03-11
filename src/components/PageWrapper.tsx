@@ -1,8 +1,8 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { HTMLMotionProps, motion } from "framer-motion";
 
-const PageWrapper = (props: any) => {
+const PageWrapper = (props: HTMLMotionProps<"div">) => {
   return (
     <div className="bg-white">
       <motion.div
