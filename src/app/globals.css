@@ -25,7 +25,7 @@ body {
 
 ::view-transition-image-pair(root) {
   isolation: isolate;
-  will-change: transform, opacity, clip-path;
+  will-change: transform, opacity, scale;
   z-index: 1;
 }
 
